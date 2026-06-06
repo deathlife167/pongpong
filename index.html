@@ -3,16 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pong Game</title>
+    <title>Pong Game - Professional Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>PONG GAME</h1>
-        <canvas id="gameCanvas" width="800" height="400"></canvas>
-        <p id="score">Player: 0 | Computer: 0</p>
-        <p id="instruction">Press SPACE to start | Use ARROW KEYS or MOUSE</p>
+        <header class="header">
+            <h1>🎮 PONG GAME 🎮</h1>
+            <p class="subtitle">Professional Edition</p>
+        </header>
+
+        <!-- Game Menu -->
+        <div id="mainMenu" class="menu">
+            <div class="menu-content">
+                <h2>Welcome to Pong!</h2>
+                <button class="menu-btn" onclick="startGame()">Play Game</button>
+                <button class="menu-btn" onclick="showSettings()">⚙️ Settings</button>
+                <button class="menu-btn" onclick="showLeaderboard()">🏆 Leaderboard</button>
+                <button class="menu-btn" onclick="showInstructions()">📖 How to Play</button>
+            </div>
+        </div>
+
+        <!-- Settings Menu -->
+        <div id="settingsMenu" class="menu hidden">
+            <div class="menu-content">
+                <h2>Settings</h2>
+                <div class="settings-group">
+                    <label>Difficulty Level:</label>
+                    <div class="button-group">
+                        <button class="difficulty-btn active" onclick="setDifficulty('easy')">Easy</button>
+                        <button class="difficulty-btn" onclick="setDifficulty('normal')">Normal</button>
+                        <button class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
+                        <button class="difficulty-btn" onclick="setDifficulty('impossible')">Impossible</button>
+                    </div>
+                </div>
+                <div class="settings-group">
+                    <label>Sound:</label>
+                    <button class="sound-btn" onclick="toggleSound()">🔊 Sound ON</button>
+                </div>
+                <div class="settings-group">
+                    <label>Theme:</label>
+                    <div class="button-group">
+                        <button class="theme-btn active" onclick="setTheme('dark')">Dark</button>
+                        <button class="theme-btn" onclick="setTheme('light')">Light</button>
+                        <button class="theme-btn" onclick="setTheme('neon')">Neon</button>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back</button>
+            </div>
+        </div>
+
+        <!-- Instructions Menu -->
+        <div id="instructionsMenu" class="menu hidden">
+            <div class="menu-content">
+                <h2>How to Play</h2>
+                <div class="instructions-text">
+                    <p><strong>🎮 Controls:</strong></p>
+                    <p>• Desktop: Use ARROW KEYS or MOUSE</p>
+                    <p>• Mobile: TOUCH & DRAG on screen</p>
+                    <p><strong>🎯 Objective:</strong></p>
+                    <p>• Score 10 points to win</p>
+                    <p>• Use your paddle to hit the ball</p>
+                    <p><strong>⚡ Tips:</strong></p>
+                    <p>• Ball speed increases after each hit</p>
+                    <p>• Time your hits for better control</p>
+                    <p>• Higher difficulty = stronger AI</p>
+                </div>
+                <button class="back-btn" onclick="backToMenu()">← Back</button>
+            </div>
+        </div>
+
+        <!-- Leaderboard Menu -->
+        <div id="leaderboardMenu" class="menu hidden">
+            <div class="menu-content">
+                <h2>🏆 Leaderboard</h2>
+                <div id="leaderboardList" class="leaderboard-list"></div>
+                <button class="clear-btn" onclick="clearLeaderboard()">Clear Scores</button>
+                <button class="back-btn" onclick="backToMenu()">← Back</button>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="gameArea" class="hidden">
+            <div class="game-header">
+                <div class="player-info">
+                    <h3>You</h3>
+                    <div class="score" id="playerScore">0</div>
+                </div>
+                <div class="difficulty-display" id="difficultyDisplay">Normal</div>
+                <div class="player-info">
+                    <h3>Computer</h3>
+                    <div class="score" id="computerScore">0</div>
+                </div>
+            </div>
+
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            
+            <div class="game-footer">
+                <div id="instruction">Press SPACE to start | Use ARROW KEYS or MOUSE</div>
+                <div class="button-group">
+                    <button class="control-btn" onclick="pauseGame()">⏸️ Pause</button>
+                    <button class="control-btn" onclick="backToMenu()">🏠 Menu</button>
+                </div>
+            </div>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
